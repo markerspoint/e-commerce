@@ -1,86 +1,80 @@
-<footer class="bg-white border-t border-gray-100 pt-16 pb-12 text-sm mt-auto">
+<footer class="bg-primary text-white pt-20 pb-10 mt-auto">
+    <!-- Top Dark Section (Vouchers/Gifts) -->
+    <!-- (Optional, based on image 4, this seems to be a separate section above footer, but let's integrate basics) -->
+</footer>
+
+<div class="bg-shop-bg pt-20 pb-10 text-shop-black border-t border-gray-200">
     <div class="container mx-auto px-4">
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <!-- Brand Column -->
             <div>
-                <h3 class="font-bold text-gray-800 mb-6 uppercase text-xs tracking-wider">Customer Service</h3>
-                <ul class="space-y-3 text-gray-500 text-xs">
-                    <li><a href="#" class="hover:text-primary transition">Help Centre</a></li>
-                    <li><a href="#" class="hover:text-primary transition">ShopLink Cares</a></li>
-                    <li><a href="#" class="hover:text-primary transition">Payment Methods</a></li>
-                    <li><a href="#" class="hover:text-primary transition">ShopLink Coins</a></li>
-                    <li><a href="#" class="hover:text-primary transition">Order Tracking</a></li>
-                    <li><a href="#" class="hover:text-primary transition">Return & Refund</a></li>
-                    <li><a href="#" class="hover:text-primary transition">Contact Us</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="font-bold text-gray-800 mb-6 uppercase text-xs tracking-wider">About ShopLink</h3>
-                <ul class="space-y-3 text-gray-500 text-xs">
-                    <li><a href="#" class="hover:text-primary transition">About Us</a></li>
-                    <li><a href="#" class="hover:text-primary transition">ShopLink Blog</a></li>
-                    <li><a href="#" class="hover:text-primary transition">Careers</a></li>
-                    <li><a href="#" class="hover:text-primary transition">Policies</a></li>
-                    <li><a href="#" class="hover:text-primary transition">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-primary transition">ShopLink Mall</a></li>
-                    <li><a href="#" class="hover:text-primary transition">Seller Centre</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="font-bold text-gray-800 mb-6 uppercase text-xs tracking-wider">Payment</h3>
-                <div class="flex flex-wrap gap-2">
-                    <div
-                        class="bg-gray-50 border border-gray-200 p-2 rounded-lg w-12 h-8 flex items-center justify-center font-bold text-blue-600 text-[10px]">
-                        VISA</div>
-                    <div
-                        class="bg-gray-50 border border-gray-200 p-2 rounded-lg w-12 h-8 flex items-center justify-center font-bold text-red-500 text-[10px]">
-                        MC</div>
-                    <div
-                        class="bg-gray-50 border border-gray-200 p-2 rounded-lg w-12 h-8 flex items-center justify-center font-bold text-blue-400 text-[10px]">
-                        GCash</div>
-                    <div
-                        class="bg-gray-50 border border-gray-200 p-2 rounded-lg w-12 h-8 flex items-center justify-center font-bold text-green-600 text-[10px]">
-                        Maya</div>
-                </div>
-            </div>
-            <div>
-                <h3 class="font-bold text-gray-800 mb-6 uppercase text-xs tracking-wider">Follow Us</h3>
-                <ul class="space-y-3 text-gray-500 text-xs">
-                    <li><a href="#" class="hover:text-primary transition flex items-center gap-2">Facebook</a>
-                    </li>
-                    <li><a href="#" class="hover:text-primary transition flex items-center gap-2">Instagram</a>
-                    </li>
-                    <li><a href="#" class="hover:text-primary transition flex items-center gap-2">Twitter</a></li>
-                    <li><a href="#" class="hover:text-primary transition flex items-center gap-2">LinkedIn</a>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="font-bold text-gray-800 mb-6 uppercase text-xs tracking-wider">Download App</h3>
-                <div class="flex gap-3">
-                    <div
-                        class="w-24 h-24 bg-gray-100 rounded-xl flex items-center justify-center text-[10px] text-center border border-gray-200 text-gray-400">
-                        QR Code</div>
-                    <div class="flex flex-col gap-2 justify-center">
-                        <div
-                            class="w-28 h-8 bg-gray-900 hover:bg-black transition text-white text-[10px] rounded-lg flex items-center justify-center cursor-pointer shadow-sm">
-                            App Store</div>
-                        <div
-                            class="w-28 h-8 bg-gray-900 hover:bg-black transition text-white text-[10px] rounded-lg flex items-center justify-center cursor-pointer shadow-sm">
-                            Google Play</div>
-                        <div
-                            class="w-28 h-8 bg-gray-900 hover:bg-black transition text-white text-[10px] rounded-lg flex items-center justify-center cursor-pointer shadow-sm">
-                            AppGallery</div>
+                <a href="/" class="flex items-center gap-2 mb-6">
+                    <div class="text-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-8 h-8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 5.05c.146.584.219.876.107 1.107-.112.231-.383.336-.925.546l-.508.197c-.606.235-.909.352-1.228.272-.319-.08-.57-.313-1.074-.779l-.271-.252c-.546-.507-.819-.76-1.124-.827-.306-.067-.643.064-1.317.325l-.213.083c-.642.249-.963.374-1.285.347-.322-.027-.611-.219-1.19-.602l-.121-.08c-.694-.46-1.04-.69-1.408-.767-.367-.076-.757.067-1.536.353l-.117.043c-.765.281-1.147.422-1.487.33-.34-.092-.613-.342-1.157-.842l-.133-.122c-.655-.603-.982-.904-1.063-1.266-.081-.362.067-.698.363-1.37l.635-1.44c.48-1.088.72-1.632 1.146-2.025.426-.393 1.012-.55 2.185-.863l.794-.213c.482-.13 1.002-.128 1.483.006.48.134.825.462 1.513 1.118l.102.097c.563.536.845.805 1.171.897.327.092.684.004 1.398-.173l.204-.05c.69-.172 1.035-.258 1.347-.202.312.056.593.266 1.154.687l.08.06c.655.492.982.738 1.328.824.346.086.745-.05 1.542-.324z" />
+                        </svg>
                     </div>
+                    <span class="text-2xl font-bold tracking-tight text-primary">ShopLink</span>
+                </a>
+                <p class="text-sm text-gray-500 leading-relaxed mb-6">
+                    Fresh groceries delivered to your door. Shop sustainable and organic products with ShopLink.
+                </p>
+
+                <h4 class="font-bold text-gray-800 mb-4 text-sm">Accepted Payments</h4>
+                <div class="flex gap-2">
+                    <div class="w-10 h-6 bg-white border rounded flex items-center justify-center text-[8px]">VISA</div>
+                    <div class="w-10 h-6 bg-white border rounded flex items-center justify-center text-[8px]">MC</div>
+                    <div class="w-10 h-6 bg-white border rounded flex items-center justify-center text-[8px]">Pay</div>
                 </div>
+            </div>
+
+            <!-- Department -->
+            <div>
+                <h3 class="font-bold text-gray-800 mb-6 text-lg">Department</h3>
+                <ul class="space-y-3 text-gray-500 text-sm">
+                    <li><a href="#" class="hover:text-primary transition">Fashion</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Education Product</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Frozen Food</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Beverages</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Organic Grocery</a></li>
+                </ul>
+            </div>
+
+            <!-- About Us -->
+            <div>
+                <h3 class="font-bold text-gray-800 mb-6 text-lg">About us</h3>
+                <ul class="space-y-3 text-gray-500 text-sm">
+                    <li><a href="#" class="hover:text-primary transition">About ShopLink</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Careers</a></li>
+                    <li><a href="#" class="hover:text-primary transition">News & Blog</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Help</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Press Center</a></li>
+                </ul>
+            </div>
+
+            <!-- Services / Help -->
+            <div>
+                <h3 class="font-bold text-gray-800 mb-6 text-lg">Services</h3>
+                <ul class="space-y-3 text-gray-500 text-sm">
+                    <li><a href="#" class="hover:text-primary transition">Gift Card</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Mobile App</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Shipping & Delivery</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Order Pickup</a></li>
+                    <li><a href="#" class="hover:text-primary transition">Account Signup</a></li>
+                </ul>
             </div>
         </div>
 
         <div
-            class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
-            <div>&copy; 2024 ShopLink Philippines. All Rights Reserved.</div>
-            <div class="mt-2 md:mt-0 text-center md:text-right">
-                Country & Region: Singapore | Indonesia | Taiwan | Thailand | Malaysia | Vietnam | Philippines
+            class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
+            <div class="flex gap-6 mb-4 md:mb-0">
+                <a href="#" class="flex items-center gap-2 hover:text-primary">Become Seller</a>
+                <a href="#" class="flex items-center gap-2 hover:text-primary">Gift Cards</a>
+                <a href="#" class="flex items-center gap-2 hover:text-primary">Help Center</a>
             </div>
+            <div>All Right reserved by Musemind | 2022</div>
         </div>
     </div>
-</footer>
+</div>
