@@ -23,4 +23,9 @@ Route::get('/category/fruits', [CategoryController::class, 'fruits'])->name('cat
 Route::get('/category/meat-fish', [CategoryController::class, 'meatFish'])->name('category.meat-fish');
 Route::get('/category/milk-dairy', [CategoryController::class, 'milkDairy'])->name('category.milk-dairy');
 
+Route::view('/login', 'auth.login')->name('login');
+Route::view('/register', 'auth.register')->name('register');
+Route::post('/login', function() { return redirect('/'); }); // Placeholder post route
+Route::post('/register', function() { return redirect('/'); }); // Placeholder post route
+
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');

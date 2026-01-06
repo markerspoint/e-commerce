@@ -65,9 +65,51 @@
                         class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full border-2 border-primary">2</span>
                 </div>
 
-                <!-- User Profile (Circle) -->
-                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-white cursor-pointer bg-gray-200">
-                    <img src="https://i.pravatar.cc/150?img=35" alt="User" class="w-full h-full object-cover">
+                <!-- User Profile Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="w-10 h-10 rounded-full overflow-hidden border-2 border-white cursor-pointer bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-gray-200 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                        </svg>
+                    </button>
+
+                    <div
+                        class="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 transform origin-top-right z-50 border border-gray-100">
+                        @auth
+                            <div class="px-4 py-2 border-b border-gray-100 mb-1">
+                                <p class="text-sm font-semibold text-gray-800">{{ Auth::user()->name ?? 'User' }}</p>
+                            </div>
+                            <a href="#"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition">Profile</a>
+                            <form method="POST" action="#">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition">Logout</button>
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                                </svg>
+                                Login
+                            </a>
+                            <a href="{{ route('register') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 012.25 21c-.571 0-1.077-.043-1.614-.135z" />
+                                </svg>
+                                Register
+                            </a>
+                        @endauth
+                    </div>
                 </div>
             </div>
         </div>
