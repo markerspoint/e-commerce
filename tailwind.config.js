@@ -16,7 +16,7 @@ module.exports = {
         'accent-hover': '#b4d668',
         'soft-accent': '#e9f5d6', // Very light green
         'shop-black': '#1e293b',
-        'shop-bg': '#f9f9f7', // Warm off-white background
+        'shop-bg': '#f4f6f6', // Warm off-white background
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'sans-serif'],

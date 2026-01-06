@@ -1,9 +1,6 @@
-<footer class="bg-primary text-white pt-20 pb-10 mt-auto">
+<footer class=" pt-20 pb-10 mt-auto">
     <!-- Top Dark Section (Vouchers/Gifts) -->
-    <!-- (Optional, based on image 4, this seems to be a separate section above footer, but let's integrate basics) -->
-</footer>
-
-<div class="bg-shop-bg pt-20 pb-10 text-shop-black border-t border-gray-200">
+    <div class="bg-shop-bg pt-20 pb-10 text-shop-black border-t border-gray-200">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <!-- Brand Column -->
@@ -74,7 +71,10 @@
                 <a href="#" class="flex items-center gap-2 hover:text-primary">Gift Cards</a>
                 <a href="#" class="flex items-center gap-2 hover:text-primary">Help Center</a>
             </div>
-            <div>All Right reserved by Musemind | 2022</div>
+            <div>All Right reserved by ShopLink | {{ date('Y') }}</div>
         </div>
     </div>
 </div>
+</footer>
+
+

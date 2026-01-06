@@ -1,4 +1,4 @@
-<header class="py-4 sticky top-0 z-50">
+<header class="py-4 sticky top-0 z-50 bg-shop-bg">
     <div class="container mx-auto px-4">
         <div
             class="bg-primary text-white rounded-3xl shadow-lg px-6 py-4 flex items-center justify-between gap-4 lg:gap-8">

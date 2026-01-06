@@ -10,7 +10,7 @@
             <div
                 class="container mx-auto left-[7%] px-6 md:px-16 py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
                 <div class="text-white">
-                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                    <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
                         We bring the store<br>to your door
                     </h1>
                     <p class="text-gray-200 text-lg mb-8 max-w-md font-medium">
@@ -22,7 +22,6 @@
                     </button>
                 </div>
                 <div class="relative flex justify-center md:justify-end mt-10 md:mt-0">
-                    <!-- Spacer for grid layout on desktop -->
                 </div>
             </div>
 
@@ -38,23 +37,36 @@
 
     <!-- Category Cards -->
     <div class="container mx-auto px-4 mt-16 relative z-20">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach ([['name' => 'Vegetable', 'desc' => 'Local market', 'icon' => 'Vegetable'], ['name' => 'Snacks & Breads', 'desc' => 'In store delivery', 'icon' => 'Bread'], ['name' => 'Fruits', 'desc' => 'Chemical free', 'icon' => 'Orange'], ['name' => 'Chicken legs', 'desc' => 'Frozen Meal', 'icon' => 'Chicken']] as $cat)
-                <div
-                    class="bg-white p-6 rounded-3xl shadow-sm hover:shadow-md transition flex justify-between items-end border border-gray-50 h-32 md:h-40 cursor-pointer group">
-                    <div class="flex flex-col h-full justify-between">
-                        <div>
-                            <h3 class="font-bold text-gray-800 text-lg group-hover:text-primary transition">
-                                {{ $cat['name'] }}</h3>
-                            <p class="text-gray-400 text-xs">{{ $cat['desc'] }}</p>
-                        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            @foreach ([['name' => 'Vegetable', 'desc' => 'Local market', 'icon' => 'vegetable.svg'], ['name' => 'Snacks & Breads', 'desc' => 'In store delivery', 'icon' => 'bread.svg'], ['name' => 'Fruits', 'desc' => 'Chemical free', 'icon' => 'fruit.svg'], ['name' => 'Meat & Fish', 'desc' => 'Fresh & Frozen', 'icon' => 'chicken.svg'], ['name' => 'Milk & Dairy', 'desc' => 'Process food', 'icon' => 'dairy.svg']] as $cat)
+                <a href="{{ url('category/' . Str::slug($cat['name'])) }}"
+                    class="bg-white p-5 rounded-3xl shadow-sm hover:shadow-md transition h-36 flex flex-col justify-between relative overflow-hidden group border border-gray-50 cursor-pointer">
+                    <div class="z-10">
+                        <h3 class="font-bold text-primary group-hover:text-primary-hover transition text-base">
+                            {{ $cat['name'] }}
+                        </h3>
+                        <p class="text-gray-400 text-xs mt-1">{{ $cat['desc'] }}</p>
                     </div>
                     <div
-                        class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-xs text-gray-400 group-hover:bg-soft-accent transition">
-                        {{ $cat['icon'] }}
+                        class="absolute bottom-2 right-2 w-16 h-16 transition-transform group-hover:scale-110 duration-300">
+                        <img src="{{ asset('icons/' . $cat['icon']) }}" alt="{{ $cat['name'] }}"
+                            class="w-full h-full object-contain">
                     </div>
-                </div>
+                </a>
             @endforeach
+
+            <!-- See All Card -->
+            <a href="{{ url('categories') }}"
+                class="bg-accent p-5 rounded-3xl shadow-sm hover:shadow-md transition h-36 flex flex-col items-center justify-center gap-3 cursor-pointer group">
+                <div
+                    class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                        stroke="currentColor" class="w-5 h-5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                </div>
+                <span class="font-bold text-primary text-sm">See all</span>
+            </a>
         </div>
     </div>
 
@@ -83,16 +95,37 @@
                     </h3>
                     <p class="text-gray-400 text-xs mb-3">500 gm.</p>
 
-                    <div class="mt-auto w-full">
+                    <div class="mt-auto w-full" x-data="{ count: 0 }">
                         <div class="text-3xl font-extrabold text-primary mb-6">
                             {{ number_format($product->price) }}<span
                                 class="text-base align-top text-gray-400 font-normal">$</span>
                         </div>
 
-                        <button
+                        <!-- Add Button -->
+                        <button x-show="count === 0" @click="count = 1"
                             class="w-full bg-shop-bg text-primary text-2xl font-light py-2 rounded-xl hover:bg-primary hover:text-white transition flex items-center justify-center shadow-sm">
                             +
                         </button>
+
+                        <!-- Quantity Counter -->
+                        <div x-show="count > 0" x-transition
+                            class="w-full bg-accent text-primary font-bold py-2 rounded-xl flex items-center justify-between px-4 shadow-sm">
+                            <button @click="count > 0 ? count-- : count = 0"
+                                class="w-8 h-8 rounded-full border border-primary flex items-center justify-center hover:bg-white/20 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                </svg>
+                            </button>
+                            <span x-text="count" class="text-xl"></span>
+                            <button @click="count++"
+                                class="w-8 h-8 rounded-full border border-primary flex items-center justify-center hover:bg-white/20 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             @endforeach
