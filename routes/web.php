@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,11 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/category/vegetable', [CategoryController::class, 'vegetable'])->name('category.vegetable');
+Route::get('/category/snacks-breads', [CategoryController::class, 'snacksBreads'])->name('category.snacks-breads');
+Route::get('/category/fruits', [CategoryController::class, 'fruits'])->name('category.fruits');
+Route::get('/category/meat-fish', [CategoryController::class, 'meatFish'])->name('category.meat-fish');
+Route::get('/category/milk-dairy', [CategoryController::class, 'milkDairy'])->name('category.milk-dairy');
+
+Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
