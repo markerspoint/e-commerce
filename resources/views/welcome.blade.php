@@ -1,7 +1,7 @@
 @use('Illuminate\Support\Str')
 @extends('layouts.app')
 
-@section('title', 'Gromuse - Grocery Delivery')
+@section('title', 'ShopLink')
 
 @section('content')
     <!-- Hero Section -->
@@ -103,10 +103,17 @@
                         </div>
 
                         <!-- Add Button -->
-                        <button x-show="count === 0" @click="count = 1"
-                            class="w-full bg-shop-bg text-primary text-2xl font-light py-2 rounded-xl hover:bg-primary hover:text-white transition flex items-center justify-center shadow-sm">
-                            +
-                        </button>
+                        @auth
+                            <button x-show="count === 0" @click="count = 1"
+                                class="w-full bg-shop-bg text-primary text-2xl font-light py-2 rounded-xl hover:bg-primary hover:text-white transition flex items-center justify-center shadow-sm">
+                                +
+                            </button>
+                        @else
+                            <a href="{{ route('login') }}"
+                                class="w-full bg-shop-bg text-primary text-2xl font-light py-2 rounded-xl hover:bg-primary hover:text-white transition flex items-center justify-center shadow-sm">
+                                +
+                            </a>
+                        @endauth
 
                         <!-- Quantity Counter -->
                         <div x-show="count > 0" x-transition
@@ -132,4 +139,193 @@
             @endforeach
         </div>
     </div>
+
+    <!-- App Download Promotion Banner -->
+    <div class="container mx-auto px-4 mb-20">
+        <div class="relative overflow-hidden rounded-[3rem] shadow-2xl"
+            style="background: linear-gradient(135deg, #6B1B4E 0%, #8B2867 50%, #6B1B4E 100%);">
+
+            <div class="absolute inset-0 opacity-10 pointer-events-none"
+                style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 24px 24px;">
+            </div>
+
+            <div class="absolute inset-0 opacity-10 pointer-events-none">
+                <div class="absolute top-10 left-10 w-32 h-32 bg-white/20 rounded-full blur-2xl"></div>
+                <div class="absolute bottom-10 right-10 w-40 h-40 bg-white/20 rounded-full blur-3xl"></div>
+                <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-accent/30 rounded-full blur-2xl"></div>
+            </div>
+
+            <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-8 md:px-16 pt-12 md:pt-16 pb-0">
+                <div class="text-white z-10 pb-12 md:pb-16">
+                    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+                        Stay Home and Get All Your Essentials From Our Market!
+                    </h2>
+                    <p class="text-gray-100 text-lg md:text-xl font-medium max-w-lg opacity-90">
+                        We deliver fresh, organic, and locally sourced products directly to your doorstep with care.
+                    </p>
+                </div>
+
+                <div class="relative flex justify-center md:justify-end z-10 h-full items-end">
+                    <div class="w-full max-w-md">
+                        <img src="{{ asset('delivery_person_groceries.png') }}" alt="Delivery Person with Groceries"
+                            class="w-full h-auto max-h-[400px] object-contain object-bottom drop-shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Best In Town Section -->
+    <div class="relative pt-20 pb-0 overflow-hidden"
+        style="background-color: #d1fa98; border-radius: 50% 50% 0 0 / 4rem 4rem 0 0;">
+        <div class="absolute inset-0 pointer-events-none opacity-40">
+            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <g fill="#ffffff">
+                    <circle cx="5" cy="15" r="0.3" />
+                    <circle cx="15" cy="85" r="0.4" />
+                    <circle cx="25" cy="25" r="0.2" />
+                    <circle cx="35" cy="65" r="0.3" />
+                    <circle cx="45" cy="10" r="0.2" />
+                    <circle cx="55" cy="80" r="0.4" />
+                    <circle cx="65" cy="35" r="0.3" />
+                    <circle cx="75" cy="15" r="0.2" />
+                    <circle cx="85" cy="70" r="0.4" />
+                    <circle cx="95" cy="45" r="0.3" />
+                </g>
+                <g stroke="#ffffff" stroke-width="0.4" stroke-linecap="round" opacity="0.8">
+                    <path d="M10 20 L12 25" />
+                    <path d="M85 10 L83 16" />
+                    <path d="M20 60 L22 66" />
+                    <path d="M70 75 L68 81" />
+                    <path d="M40 30 L41 33" />
+                    <path d="M90 35 L92 40" />
+                    <path d="M30 90 L28 95" />
+                    <path d="M60 15 L62 20" />
+                </g>
+            </svg>
+        </div>
+
+        <div class="container mx-auto px-4 text-center mb-16 relative z-10">
+            <h2 class="text-4xl md:text-6xl font-extrabold text-[#03352c] mb-6 tracking-tight">
+                We always provide<br>you the best in town
+            </h2>
+            <p class="text-[#03352c] text-lg font-medium max-w-2xl mx-auto opacity-75">
+                Delivering tried-and-true quality with a commitment to service that never goes out of style.
+            </p>
+        </div>
+
+        <!-- Marquee Section -->
+        <div class="relative w-full overflow-hidden pb-0 leading-none">
+            <div class="inline-flex gap-8 animate-marquee whitespace-nowrap pl-4">
+                @foreach (range(1, 3) as $i)
+                    <div class="bg-[#03352c] p-8 w-80 h-96 flex flex-col justify-between shrink-0 whitespace-normal text-white group hover:shadow-2xl transition duration-300 rounded-b-none"
+                        style="border-radius: 50% 50% 0 0 / 2rem 2rem 0 0;">
+                        <h3 class="font-bold text-2xl leading-tight">ShopLink<br>Rewards.</h3>
+                        <div class="flex justify-center flex-1 items-end pb-4">
+                            <div class="w-32 h-32 text-[#ccfd62]">
+                                <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+                                    <path d="M30 80 L30 100 M70 80 L70 100" stroke-opacity="0.5" />
+                                    <rect x="30" y="80" width="40" height="20" rx="2" />
+                                    <path d="M40 80 L40 60 L60 60 L60 80" />
+                                    <rect x="55" y="25" width="30" height="40" transform="rotate(15 70 45)"
+                                        fill="#03352c" fill-opacity="0.2" />
+                                    <text x="60" y="50" font-size="10" transform="rotate(15 70 45)" fill="currentColor"
+                                        stroke="none">50</text>
+                                    <rect x="25" y="30" width="30" height="40" transform="rotate(-15 40 50)"
+                                        fill="#03352c" fill-opacity="0.2" />
+                                    <text x="30" y="55" font-size="10" transform="rotate(-15 40 50)" fill="currentColor"
+                                        stroke="none">20</text>
+                                    <path d="M40 65 Q50 65 60 70" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Gift Card -->
+                    <div class="bg-[#03352c] p-8 w-80 h-96 flex flex-col justify-between shrink-0 whitespace-normal text-white group hover:shadow-2xl transition duration-300 rounded-b-none"
+                        style="border-radius: 50% 50% 0 0 / 2rem 2rem 0 0;">
+                        <h3 class="font-bold text-2xl leading-tight">Gift the<br>Freshness</h3>
+                        <div class="flex justify-center flex-1 items-end pb-4">
+                            <div class="w-32 h-32 text-[#ccfd62]">
+                                <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+                                    <rect x="20" y="20" width="60" height="70" rx="5" />
+                                    <path d="M50 20 L50 30 M40 25 L60 25" />
+                                    <circle cx="50" cy="27" r="3" />
+                                    <rect x="30" y="50" width="40" height="30" rx="2" fill="#03352c"
+                                        fill-opacity="0.2" />
+                                    <line x1="30" y1="60" x2="70" y2="60"
+                                        stroke-width="1" />
+                                    <rect x="45" y="65" width="10" height="10" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Tabby Invoice -->
+                    <div class="bg-[#03352c] p-8 w-80 h-96 flex flex-col justify-between shrink-0 whitespace-normal text-white group hover:shadow-2xl transition duration-300 rounded-b-none"
+                        style="border-radius: 50% 50% 0 0 / 2rem 2rem 0 0;">
+                        <h3 class="font-bold text-2xl leading-tight">Secure & Easy<br>Payments</h3>
+                        <div class="flex justify-center flex-1 items-end pb-4">
+                            <div class="w-32 h-32 text-[#ccfd62]">
+                                <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+                                    <rect x="55" y="60" width="35" height="25" rx="2"
+                                        stroke-dasharray="2 2" />
+                                    <rect x="60" y="75" width="10" height="6" />
+                                    <path d="M20 100 L20 80 Q20 70 30 65 L40 60" />
+                                    <rect x="35" y="30" width="30" height="50" rx="3" fill="#03352c"
+                                        fill-opacity="0.2" />
+                                    <circle cx="50" cy="75" r="2" />
+                                    <path d="M50 65 L50 45 M45 50 L50 45 L55 50" />
+                                    <path d="M30 65 L65 65" />
+                                    <path d="M30 75 L65 75" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Order and Collect -->
+                    <div class="bg-[#03352c] p-8 w-80 h-96 flex flex-col justify-between shrink-0 whitespace-normal text-white group hover:shadow-2xl transition duration-300 rounded-b-none"
+                        style="border-radius: 50% 50% 0 0 / 2rem 2rem 0 0;">
+                        <h3 class="font-bold text-2xl leading-tight">Click &<br>Collect</h3>
+                        <div class="flex justify-center flex-1 items-end pb-4">
+                            <div class="w-32 h-32 text-[#ccfd62]">
+                                <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
+                                    <rect x="10" y="40" width="30" height="50" rx="3" />
+                                    <circle cx="25" cy="85" r="2" />
+                                    <path d="M55 50 L55 90 L90 90 L90 50 L72.5 60 L55 50 Z" />
+                                    <path d="M60 50 L60 35 Q60 30 70 30 Q80 30 80 40 L85 50" />
+                                    <rect x="75" y="20" width="10" height="30" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 @endsection
+
+
+<style>
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .animate-marquee {
+        animation: marquee 40s linear infinite;
+    }
+
+    .animate-marquee:hover {
+        animation-play-state: paused;
+    }
+</style>

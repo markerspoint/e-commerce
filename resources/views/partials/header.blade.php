@@ -81,10 +81,16 @@
                         @auth
                             <div class="px-4 py-2 border-b border-gray-100 mb-1">
                                 <p class="text-sm font-semibold text-gray-800">{{ Auth::user()->name ?? 'User' }}</p>
+                                <p class="text-xs text-gray-500 capitalize">{{ Auth::user()->role }}</p>
                             </div>
+                            @if (Auth::user()->isSeller())
+                                <a href="{{ route('seller.dashboard') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition">Seller
+                                    Dashboard</a>
+                            @endif
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition">Profile</a>
-                            <form method="POST" action="#">
+                            <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
                                     class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition">Logout</button>

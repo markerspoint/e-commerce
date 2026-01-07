@@ -10,28 +10,44 @@
                 <p class="text-gray-500 mt-2">Join us to start shopping</p>
             </div>
 
+            {{-- Session Messages --}}
+            @if (session('error'))
+                <div class="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             <form action="{{ route('register') }}" method="POST" class="space-y-6">
                 @csrf
 
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                    <input type="text" name="name" id="name"
-                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
+                    <input type="text" name="name" id="name" value="{{ old('name') }}"
+                        class="w-full px-4 py-3 rounded-xl border @error('name') border-red-400 @else border-gray-200 @enderror focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
                         placeholder="Enter your full name" required>
+                    @error('name')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                    <input type="email" name="email" id="email"
-                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
+                    <input type="email" name="email" id="email" value="{{ old('email') }}"
+                        class="w-full px-4 py-3 rounded-xl border @error('email') border-red-400 @else border-gray-200 @enderror focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
                         placeholder="Enter your email" required>
+                    @error('email')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
                     <input type="password" name="password" id="password"
-                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
-                        placeholder="Create a password" required>
+                        class="w-full px-4 py-3 rounded-xl border @error('password') border-red-400 @else border-gray-200 @enderror focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
+                        placeholder="Create a password (min 8 characters)" required>
+                    @error('password')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div>
@@ -44,8 +60,8 @@
 
                 <div class="text-sm">
                     <label class="flex items-start gap-2 cursor-pointer">
-                        <input type="checkbox" class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
-                            required>
+                        <input type="checkbox" name="terms"
+                            class="mt-1 w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary" required>
                         <span class="text-gray-600">I agree to the <a href="#"
                                 class="text-primary hover:underline">Terms of Service</a> and <a href="#"
                                 class="text-primary hover:underline">Privacy Policy</a></span>

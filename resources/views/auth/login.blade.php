@@ -10,26 +10,46 @@
                 <p class="text-gray-500 mt-2">Please login to your account</p>
             </div>
 
+            {{-- Session Messages --}}
+            @if (session('success'))
+                <div class="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl text-sm">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-xl text-sm">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             <form action="{{ route('login') }}" method="POST" class="space-y-6">
                 @csrf
 
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                    <input type="email" name="email" id="email"
-                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
+                    <input type="email" name="email" id="email" value="{{ old('email') }}"
+                        class="w-full px-4 py-3 rounded-xl border @error('email') border-red-400 @else border-gray-200 @enderror focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
                         placeholder="Enter your email" required>
+                    @error('email')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
                     <input type="password" name="password" id="password"
-                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
+                        class="w-full px-4 py-3 rounded-xl border @error('password') border-red-400 @else border-gray-200 @enderror focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition"
                         placeholder="Enter your password" required>
+                    @error('password')
+                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="flex items-center justify-between text-sm">
                     <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary">
+                        <input type="checkbox" name="remember"
+                            class="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary">
                         <span class="text-gray-600">Remember me</span>
                     </label>
                     <a href="#" class="text-primary hover:text-accent font-medium">Forgot Password?</a>

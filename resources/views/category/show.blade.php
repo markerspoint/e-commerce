@@ -35,10 +35,17 @@
                             </div>
 
                             <!-- Add Button -->
-                            <button x-show="count === 0" @click="count = 1"
-                                class="w-full bg-shop-bg text-primary text-2xl font-light py-2 rounded-xl hover:bg-primary hover:text-white transition flex items-center justify-center shadow-sm">
-                                +
-                            </button>
+                            @auth
+                                <button x-show="count === 0" @click="count = 1"
+                                    class="w-full bg-shop-bg text-primary text-2xl font-light py-2 rounded-xl hover:bg-primary hover:text-white transition flex items-center justify-center shadow-sm">
+                                    +
+                                </button>
+                            @else
+                                <a href="{{ route('login') }}"
+                                    class="w-full bg-shop-bg text-primary text-2xl font-light py-2 rounded-xl hover:bg-primary hover:text-white transition flex items-center justify-center shadow-sm">
+                                    +
+                                </a>
+                            @endauth
 
                             <!-- Quantity Counter -->
                             <div x-show="count > 0"
