@@ -281,4 +281,14 @@ class SellerController extends Controller
         
         return view('seller.orders.show', compact('order'));
     }
+
+    /**
+     * Delete an order.
+     */
+    public function deleteOrder(\App\Models\Order $order)
+    {
+        $order->delete();
+        return redirect()->route('seller.orders')
+            ->with('success', 'Order deleted successfully!');
+    }
 }

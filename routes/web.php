@@ -78,6 +78,7 @@ Route::middleware(['auth', 'role:seller'])->prefix('seller')->name('seller.')->g
     // Orders
     Route::get('/orders', [SellerController::class, 'orders'])->name('orders');
     Route::get('/orders/{order}', [SellerController::class, 'showOrder'])->name('orders.show');
+    Route::delete('/orders/{order}', [SellerController::class, 'deleteOrder'])->name('orders.delete');
 });
 
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');
