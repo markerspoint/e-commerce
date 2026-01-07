@@ -1,5 +1,5 @@
 <header class="bg-white border-b border-gray-200 sticky top-0 z-40">
-    <div class="px-6 py-4 flex items-center justify-between">
+    <div class="h-16 px-6 flex items-center justify-between">
         <div class="flex items-center gap-4">
             <h1 class="text-xl font-bold text-gray-800">@yield('page-title', 'Dashboard')</h1>
         </div>

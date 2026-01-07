@@ -73,7 +73,7 @@ class CheckoutController extends Controller
             
             DB::commit();
 
-            return redirect()->route('home')->with('success', 'Order placed successfully!');
+            return redirect()->route('orders.index')->with('success', 'Order placed successfully!');
 
         } catch (\Exception $e) {
             DB::rollBack();
