@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Organic Leaf Background -->
+  <circle cx="32" cy="32" r="28" fill="#E8F5E9"/>
+  <!-- Large Leaf -->
+  <path d="M16 48c0-20 16-36 36-36 0 20-16 36-36 36z" fill="#4CAF50"/>
+  <path d="M16 48c8-8 20-16 36-36" stroke="#2E7D32" stroke-width="2" fill="none"/>
+  <path d="M24 40c4-4 10-8 18-16M20 44c4-4 8-6 14-12" stroke="#81C784" stroke-width="1" fill="none"/>
+  <!-- Apple with leaf -->
+  <circle cx="24" cy="28" r="10" fill="#F44336"/>
+  <path d="M24 18c0-4 4-6 6-4" stroke="#4CAF50" stroke-width="2" fill="none"/>
+  <path d="M26 16c2-1 4 0 4 2s-2 2-4 1" fill="#4CAF50"/>
+  <!-- Carrot -->
+  <path d="M44 36l-4 18c-1 2-3 2-4 0l-2-10 6-10z" fill="#FF7043"/>
+  <path d="M40 36c2-4 6-4 8 0" fill="#4CAF50"/>
+  <path d="M42 34c1-3 4-3 5 0" fill="#66BB6A"/>
+</svg>

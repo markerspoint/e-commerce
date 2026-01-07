@@ -39,25 +39,30 @@
     <!-- Category Cards -->
     <div class="container mx-auto px-4 mt-16 relative z-20">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            @foreach ([['name' => 'Vegetable', 'desc' => 'Local market', 'icon' => 'vegetable.svg'], ['name' => 'Snacks & Breads', 'desc' => 'In store delivery', 'icon' => 'bread.svg'], ['name' => 'Fruits', 'desc' => 'Chemical free', 'icon' => 'fruit.svg'], ['name' => 'Meat & Fish', 'desc' => 'Fresh & Frozen', 'icon' => 'chicken.svg'], ['name' => 'Milk & Dairy', 'desc' => 'Process food', 'icon' => 'dairy.svg']] as $cat)
-                <a href="{{ url('category/' . Str::slug($cat['name'])) }}"
+            @forelse ($featuredCategories as $category)
+                <a href="{{ route('category.show', $category->slug) }}"
                     class="bg-white p-5 rounded-3xl shadow-sm hover:shadow-md transition h-36 flex flex-col justify-between relative overflow-hidden group border border-gray-50 cursor-pointer">
                     <div class="z-10">
                         <h3 class="font-bold text-primary group-hover:text-primary-hover transition text-base">
-                            {{ $cat['name'] }}
+                            {{ $category->name }}
                         </h3>
-                        <p class="text-gray-400 text-xs mt-1">{{ $cat['desc'] }}</p>
+                        <p class="text-gray-400 text-xs mt-1">{{ $category->description ?? 'Fresh products' }}</p>
                     </div>
                     <div
                         class="absolute bottom-2 right-2 w-16 h-16 transition-transform group-hover:scale-110 duration-300">
-                        <img src="{{ asset('icons/' . $cat['icon']) }}" alt="{{ $cat['name'] }}"
+                        <img src="{{ $category->icon_url }}" alt="{{ $category->name }}"
                             class="w-full h-full object-contain">
                     </div>
                 </a>
-            @endforeach
+            @empty
+                {{-- No categories fallback --}}
+                <div class="col-span-full text-center py-8 text-gray-400">
+                    <p>No categories available yet.</p>
+                </div>
+            @endforelse
 
             <!-- See All Card -->
-            <a href="{{ url('categories') }}"
+            <a href="{{ route('categories.index') }}"
                 class="bg-accent p-5 rounded-3xl shadow-sm hover:shadow-md transition h-36 flex flex-col items-center justify-center gap-3 cursor-pointer group">
                 <div
                     class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary group-hover:scale-110 transition duration-300">
@@ -75,7 +80,8 @@
     <div class="container mx-auto px-4 mt-20 mb-20">
         <div class="flex items-center justify-between mb-8">
             <h2 class="text-3xl font-extrabold text-primary">You might need</h2>
-            <a href="#" class="text-red-500 font-bold hover:text-red-600 transition flex items-center gap-2">
+            <a href="{{ route('products.index') }}"
+                class="text-red-500 font-bold hover:text-red-600 transition flex items-center gap-2">
                 See more
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                     stroke="currentColor" class="w-4 h-4">
@@ -84,63 +90,80 @@
             </a>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            @foreach ($dailyDiscoverProducts as $product)
-                <div
-                    class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition border border-transparent hover:border-gray-100 flex flex-col items-center text-center group h-full">
-                    <div class="relative w-3/4 aspect-square mb-4">
-                        <img src="{{ $product->image }}"
-                            class="w-full h-full object-contain group-hover:scale-110 transition duration-300">
-                    </div>
-                    <h3 class="font-bold text-primary text-base leading-tight mb-1 line-clamp-2 h-10">{{ $product->name }}
-                    </h3>
-                    <p class="text-gray-400 text-xs mb-3">500 gm.</p>
-
-                    <div class="mt-auto w-full" x-data="{ count: 0 }">
-                        <div class="text-3xl font-extrabold text-primary mb-6">
-                            {{ number_format($product->price) }}<span
-                                class="text-base align-top text-gray-400 font-normal">$</span>
+        @if ($dailyDiscoverProducts->count() > 0)
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                @foreach ($dailyDiscoverProducts as $product)
+                    <div
+                        class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition border border-transparent hover:border-gray-100 flex flex-col items-center text-center group h-full">
+                        <div class="relative w-3/4 aspect-square mb-4">
+                            <img src="{{ $product->image }}"
+                                class="w-full h-full object-contain group-hover:scale-110 transition duration-300">
                         </div>
+                        <h3 class="font-bold text-primary text-base leading-tight mb-1 line-clamp-2 h-10">
+                            {{ $product->name }}
+                        </h3>
+                        <p class="text-gray-400 text-xs mb-3">500 gm.</p>
 
-                        <!-- Add Button -->
-                        @auth
-                            <button x-show="count === 0" @click="count = 1"
-                                class="w-full bg-shop-bg text-primary text-2xl font-light py-2 rounded-xl hover:bg-primary hover:text-white transition flex items-center justify-center shadow-sm">
-                                +
-                            </button>
-                        @else
-                            <a href="{{ route('login') }}"
-                                class="w-full bg-shop-bg text-primary text-2xl font-light py-2 rounded-xl hover:bg-primary hover:text-white transition flex items-center justify-center shadow-sm">
-                                +
-                            </a>
-                        @endauth
+                        <div class="mt-auto w-full" x-data="{ count: 0 }">
+                            <div class="text-3xl font-extrabold text-primary mb-6">
+                                {{ number_format($product->price) }}<span
+                                    class="text-base align-top text-gray-400 font-normal">$</span>
+                            </div>
 
-                        <!-- Quantity Counter -->
-                        <div x-show="count > 0" x-transition
-                            class="w-full bg-accent text-primary font-bold py-2 rounded-xl flex items-center justify-between px-4 shadow-sm">
-                            <button @click="count > 0 ? count-- : count = 0"
-                                class="w-8 h-8 rounded-full border border-primary flex items-center justify-center hover:bg-white/20 transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
-                                </svg>
-                            </button>
-                            <span x-text="count" class="text-xl"></span>
-                            <button @click="count++"
-                                class="w-8 h-8 rounded-full border border-primary flex items-center justify-center hover:bg-white/20 transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
-                                </svg>
-                            </button>
+                            <!-- Add Button -->
+                            @auth
+                                <button x-show="count === 0" @click="count = 1"
+                                    class="w-full bg-shop-bg text-primary text-2xl font-light py-2 rounded-xl hover:bg-primary hover:text-white transition flex items-center justify-center shadow-sm">
+                                    +
+                                </button>
+                            @else
+                                <a href="{{ route('login') }}"
+                                    class="w-full bg-shop-bg text-primary text-2xl font-light py-2 rounded-xl hover:bg-primary hover:text-white transition flex items-center justify-center shadow-sm">
+                                    +
+                                </a>
+                            @endauth
+
+                            <!-- Quantity Counter -->
+                            <div x-show="count > 0" x-transition
+                                class="w-full bg-accent text-primary font-bold py-2 rounded-xl flex items-center justify-between px-4 shadow-sm">
+                                <button @click="count > 0 ? count-- : count = 0"
+                                    class="w-8 h-8 rounded-full border border-primary flex items-center justify-center hover:bg-white/20 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                    </svg>
+                                </button>
+                                <span x-text="count" class="text-xl"></span>
+                                <button @click="count++"
+                                    class="w-8 h-8 rounded-full border border-primary flex items-center justify-center hover:bg-white/20 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
+                @endforeach
+            </div>
+        @else
+            {{-- No Products Fallback --}}
+            <div class="p-12 text-center">
+                <div class="w-24 h-24 mx-auto mb-6 text-gray-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1"
+                        stroke="currentColor" class="w-full h-full">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                    </svg>
                 </div>
-            @endforeach
-        </div>
+                <h3 class="text-xl font-bold text-gray-700 mb-2">No products available yet</h3>
+                <p class="text-gray-400 max-w-md mx-auto">Our shelves are being stocked with fresh products. Check back
+                    soon for amazing deals!</p>
+            </div>
+        @endif
     </div>
 
-    <!-- App Download Promotion Banner -->
+    {{-- banner --}}
     <div class="container mx-auto px-4 mb-20">
         <div class="relative overflow-hidden rounded-[3rem] shadow-2xl"
             style="background: linear-gradient(135deg, #6B1B4E 0%, #8B2867 50%, #6B1B4E 100%);">
@@ -175,7 +198,6 @@
         </div>
     </div>
 
-    <!-- Best In Town Section -->
     <div class="relative pt-20 pb-0 overflow-hidden"
         style="background-color: #d1fa98; border-radius: 50% 50% 0 0 / 4rem 4rem 0 0;">
         <div class="absolute inset-0 pointer-events-none opacity-40">

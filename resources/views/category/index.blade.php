@@ -18,13 +18,8 @@
                 <a href="{{ route('category.show', $cat->slug ?? Str::slug($cat->name)) }}"
                     class="bg-white p-6 rounded-3xl shadow-sm hover:shadow-md transition flex flex-col items-center text-center group border border-gray-50 h-56 justify-center gap-4">
                     <div
-                        class="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center p-4 group-hover:bg-soft-accent transition duration-300">
-                        @if ($cat->image)
-                            <img src="{{ $cat->image }}" class="w-full h-full object-contain">
-                        @else
-                            <!-- Fallback Icons based on name or generic -->
-                            <span class="text-2xl font-bold text-primary">{{ substr($cat->name, 0, 1) }}</span>
-                        @endif
+                        class="w-24 h-24 rounded-full flex items-center justify-center p-4 group-hover:scale-110 transition duration-300">
+                        <img src="{{ $cat->icon_url }}" class="w-full h-full object-contain">
                     </div>
                     <div>
                         <h3 class="font-bold text-primary text-xl group-hover:text-primary-hover transition">

@@ -6,6 +6,10 @@
     <!-- Header / Breadcrumb -->
     <div class="bg-primary pt-24 pb-12 rounded-b-[4rem]">
         <div class="container mx-auto px-4 text-center text-white">
+            <div
+                class="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center p-4 mx-auto mb-6 backdrop-blur-sm">
+                <img src="{{ $category->icon_url }}" class="w-full h-full object-contain brightness-0 invert">
+            </div>
             <h1 class="text-4xl md:text-5xl font-extrabold mb-4">{{ $categoryName }}</h1>
             <p class="text-gray-300 font-medium text-lg">
                 Fresh {{ strtolower($categoryName) }} sourced for you

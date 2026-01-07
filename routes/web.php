@@ -19,12 +19,12 @@ use App\Http\Controllers\Auth\AuthController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/products', [HomeController::class, 'products'])->name('products.index');
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
 // API endpoint for AJAX category navigation
 Route::get('/api/category/{slug}/products', [CategoryController::class, 'getProducts'])->name('api.category.products');
 
-// Individual category routes removed - using dynamic route: /category/{slug}
 
 // Authentication Routes (Guest only)
 Route::middleware(['guest'])->group(function () {

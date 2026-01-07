@@ -176,10 +176,14 @@ class SellerController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:categories',
+            'description' => 'nullable|string|max:255',
+            'icon' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'featured' => 'boolean',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
+        $validated['featured'] = $request->has('featured');
 
         // Handle image upload
         if ($request->hasFile('image')) {
@@ -208,10 +212,14 @@ class SellerController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255|unique:categories,name,' . $category->id,
+            'description' => 'nullable|string|max:255',
+            'icon' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'featured' => 'boolean',
         ]);
 
         $validated['slug'] = Str::slug($validated['name']);
+        $validated['featured'] = $request->has('featured');
 
         // Handle image upload
         if ($request->hasFile('image')) {

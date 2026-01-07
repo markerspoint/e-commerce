@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Milk Carton -->
+  <rect x="8" y="20" width="24" height="36" rx="2" fill="#FDFEFE"/>
+  <path d="M8 20l12-12 12 12" fill="#5DADE2"/>
+  <rect x="12" y="28" width="16" height="20" rx="1" fill="#AED6F1"/>
+  <text x="20" y="42" font-size="8" fill="#2E86C1" text-anchor="middle" font-weight="bold">MILK</text>
+  <!-- Cheese -->
+  <path d="M36 36l20-8v24l-20 8z" fill="#F4D03F"/>
+  <path d="M36 36l8-12 12 4-20 8z" fill="#F7DC6F"/>
+  <circle cx="42" cy="42" r="2" fill="#D4AC0D"/>
+  <circle cx="48" cy="46" r="3" fill="#D4AC0D"/>
+  <circle cx="44" cy="52" r="2" fill="#D4AC0D"/>
+  <!-- Egg -->
+  <ellipse cx="52" cy="22" rx="8" ry="10" fill="#FDFEFE"/>
+  <ellipse cx="52" cy="24" rx="6" ry="7" fill="#F9E79F"/>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Bread Loaf -->
+  <path d="M4 36c0-8 10-14 22-14s22 6 22 14c0 4-2 8-4 10H8c-2-2-4-6-4-10z" fill="#D4A574"/>
+  <path d="M8 36c0-6 8-10 18-10s18 4 18 10c0 3-1 6-2 8H10c-1-2-2-5-2-8z" fill="#E6BE8A"/>
+  <path d="M12 34c0-3 6-6 14-6s14 3 14 6" fill="#F0D9B5"/>
+  <!-- Croissant -->
+  <path d="M38 48c-4-4 0-12 8-12s12 8 12 12-4 8-10 8c-4 0-6-4-10-8z" fill="#D4A574"/>
+  <path d="M46 40c2 0 6 2 6 6s-2 6-4 6" stroke="#C49A6C" stroke-width="1" fill="none"/>
+  <path d="M42 44c2 0 4 2 4 4s-1 4-2 4" stroke="#C49A6C" stroke-width="1" fill="none"/>
+  <!-- Cookie -->
+  <circle cx="14" cy="52" r="8" fill="#8B4513"/>
+  <circle cx="12" cy="50" r="1.5" fill="#5D3A1A"/>
+  <circle cx="16" cy="52" r="1.5" fill="#5D3A1A"/>
+  <circle cx="13" cy="55" r="1.5" fill="#5D3A1A"/>
+  <circle cx="17" cy="49" r="1" fill="#5D3A1A"/>
+</svg>
