@@ -130,14 +130,14 @@ class Category extends Model
             'vehicle' => 'automotive.svg',
             'motor' => 'automotive.svg',
 
-            // Food & Groceries - Explicit Matches for 13 specific categories
+            // Food & Groceries 
             'vegetable' => 'vegetables.svg',
-            'fruit' => 'fruits.svg',  // Handles "Fruits"
-            'meat' => 'meat-fish.svg', // Handles "Meat & Fish"
+            'fruit' => 'fruits.svg',  
+            'meat' => 'meat-fish.svg', 
             'fish' => 'meat-fish.svg',
-            'milk' => 'milk-dairy.svg', // Handles "Milk & Dairy"
+            'milk' => 'milk-dairy.svg', 
             'dairy' => 'milk-dairy.svg',
-            'snack' => 'snacks-breads.svg', // Handles "Snacks & Breads"
+            'snack' => 'snacks-breads.svg', 
             'bread' => 'snacks-breads.svg',
             
             // Additional food keywords
