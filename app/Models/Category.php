@@ -70,14 +70,103 @@ class Category extends Model
     }
 
     /**
+     * Get the card background color based on category
+     */
+    public function getCardColorAttribute()
+    {
+        $name = Str::lower($this->name);
+        $slug = $this->slug;
+
+        // Map keywords to colors (hex)
+        $colorMap = [
+            // Electronics (Blue/Indigo)
+            'electronic' => '#3b82f6',
+            'phone' => '#3b82f6',
+            'laptop' => '#3b82f6',
+            'computer' => '#3b82f6',
+            'gadget' => '#6366f1',
+            
+            // Fashion (Pink/Purple)
+            'fashion' => '#ec4899',
+            'clothing' => '#ec4899',
+            'wear' => '#d946ef',
+            'clothes' => '#d946ef',
+            'apparel' => '#ec4899',
+            
+            // Home & Living (Orange/Amber)
+            'home' => '#f59e0b',
+            'living' => '#f59e0b',
+            'furniture' => '#f97316',
+            'decor' => '#d97706',
+            
+            // Beauty (Rose/Red)
+            'beauty' => '#f43f5e',
+            'cosmetic' => '#f43f5e',
+            'makeup' => '#e11d48',
+            'skincare' => '#fb7185',
+            
+            // Toys (Yellow/Red)
+            'toy' => '#ef4444',
+            'game' => '#facc15',
+            'kid' => '#f59e0b',
+            'baby' => '#fbbf24',
+            
+            // Health (Teal/Green)
+            'health' => '#14b8a6',
+            'medical' => '#06b6d4',
+            'pharmacy' => '#0d9488',
+            'care' => '#10b981',
+            
+            // Sports (Orange/Red)
+            'sport' => '#f97316',
+            'fitness' => '#ea580c',
+            'gym' => '#ef4444',
+            'outdoor' => '#f97316',
+            
+            // Automotive (Gray/Blue)
+            'auto' => '#3b82f6',
+            'car' => '#2563eb',
+            'vehicle' => '#475569',
+            'motor' => '#64748b',
+
+            // Food & Groceries (Greens, Reds, Oranges)
+            'vegetable' => '#22c55e',
+            'fruit' => '#ef4444', 
+            'meat' => '#dc2626',
+            'fish' => '#3b82f6',
+            'milk' => '#06b6d4',
+            'dairy' => '#0ea5e9',
+            'snack' => '#f59e0b',
+            'bread' => '#d97706',
+            'beverage' => '#0ea5e9',
+            'drink' => '#3b82f6',
+            'frozen' => '#60a5fa',
+            
+            // Organic
+            'organic' => '#65a30d',
+            'natural' => '#84cc16',
+        ];
+
+        // Check if any keyword matches
+        foreach ($colorMap as $keyword => $color) {
+            if (Str::contains($name, $keyword) || Str::contains($slug, $keyword)) {
+                return $color;
+            }
+        }
+
+        // Default fallback (Primary Green)
+        return '#00b207';
+    }
+
+    /**
      * Get default icon filename based on category name keywords
      */
     public function getDefaultIconFilename()
     {
         $name = Str::lower($this->name);
         $slug = $this->slug;
-
-        // Map keywords to icon files
+        
+        // ... (rest of the method)
         $iconMap = [
             // Electronics
             'electronic' => 'electronics.svg',

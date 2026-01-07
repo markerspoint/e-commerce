@@ -41,7 +41,8 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             @forelse ($featuredCategories as $category)
                 <a href="{{ route('category.show', $category->slug) }}"
-                    class="bg-white p-5 rounded-3xl shadow-sm hover:shadow-md transition h-36 flex flex-col justify-between relative overflow-hidden group border border-gray-50 cursor-pointer">
+                    class="bg-white p-5 rounded-3xl shadow-sm hover:shadow-md transition h-36 flex flex-col justify-between relative overflow-hidden group border border-gray-50 cursor-pointer"
+                    style="background-image: radial-gradient(circle at 0% 0%, {{ $category->card_color }}15 0%, transparent 50%);">
                     <div class="z-10">
                         <h3 class="font-bold text-primary group-hover:text-primary-hover transition text-base">
                             {{ $category->name }}
