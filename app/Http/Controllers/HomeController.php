@@ -27,10 +27,24 @@ class HomeController extends Controller
         return view('welcome', compact('categories', 'featuredCategories', 'flashSaleProducts', 'dailyDiscoverProducts'));
     }
 
-    public function products()
+    public function products(Request $request)
     {
-        $products = Product::with('category')->paginate(20);
+        $products = Product::with('category')->paginate(12);
         $categories = Category::withCount('products')->get();
+        
+        // Return JSON for AJAX infinite scroll requests
+        if ($request->ajax()) {
+            $html = '';
+            foreach ($products as $product) {
+                $html .= view('products.partials.card', compact('product'))->render();
+            }
+            
+            return response()->json([
+                'html' => $html,
+                'nextPage' => $products->hasMorePages() ? $products->currentPage() + 1 : null,
+                'total' => $products->total(),
+            ]);
+        }
         
         return view('products.index', compact('products', 'categories'));
     }

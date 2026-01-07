@@ -25,12 +25,15 @@
 
     @include('partials.header')
 
-    <main class="min-h-screen">
+    <main class="@yield('main-class', 'min-h-screen')">
         @yield('content')
     </main>
 
-    @include('partials.footer')
+    @unless (View::hasSection('hide-footer'))
+        @include('partials.footer')
+    @endunless
 
+    @stack('scripts')
 </body>
 
 </html>
