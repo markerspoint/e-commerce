@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- T-Shirt -->
+  <path d="M16 16l8-4 8 4 8-4 8 4v12l-6-2v24H22V30l-6 2z" fill="#E91E63"/>
+  <path d="M24 12l8 4 8-4" stroke="#C2185B" stroke-width="1" fill="none"/>
+  <!-- Dress -->
+  <path d="M48 16l-6 8c2 4 6 12 8 26H38c2-14 6-22 8-26l-6-8z" fill="#9C27B0" opacity="0.8"/>
+  <path d="M44 16h8" stroke="#7B1FA2" stroke-width="1"/>
+  <!-- Bag -->
+  <path d="M10 40h12v12H10z" fill="#FF9800"/>
+  <path d="M16 40v-4c0-2-2-4-4-4" stroke="#E65100" stroke-width="2" fill="none"/>
+</svg>

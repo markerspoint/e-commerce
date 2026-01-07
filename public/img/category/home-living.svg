@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- House -->
+  <path d="M12 30L32 12l20 18v22H12z" fill="#F39C12"/>
+  <path d="M16 32v16h8V36h16v12h8V32" fill="#F1C40F"/>
+  <rect x="28" y="24" width="8" height="8" fill="#87CEEB"/>
+  <!-- Plant -->
+  <path d="M54 48v8h-8v-8c0-3 2-6 4-6s4 3 4 6z" fill="#27AE60"/>
+  <path d="M54 48c4-6 8-6 8 0" fill="#2ECC71"/>
+  <path d="M46 48c-4-6-8-6-8 0" fill="#2ECC71"/>
+  <!-- Lamp -->
+  <path d="M8 40h10l-2-6H10z" fill="#E74C3C"/>
+  <rect x="12" y="40" width="2" height="12" fill="#7F8C8D"/>
+  <rect x="8" y="52" width="10" height="2" fill="#7F8C8D"/>
+</svg>

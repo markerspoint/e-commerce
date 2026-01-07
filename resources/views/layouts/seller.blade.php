@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', 'ShopLink')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>@yield('title', 'Seller Dashboard - ShopLink')</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,21 +17,28 @@
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f9f9f7;
         }
     </style>
 </head>
 
-<body class="antialiased text-shop-black bg-shop-bg">
+<body class="antialiased bg-gray-50">
+    <div class="min-h-screen flex">
+        {{-- Sidebar --}}
+        @include('partials.seller-sidebar')
 
-    @include('partials.header')
+        {{-- Main Content Area --}}
+        <div class="flex-1 flex flex-col ml-64">
+            {{-- Top Header --}}
+            @include('partials.seller-header')
 
-    <main class="min-h-screen">
-        @yield('content')
-    </main>
+            {{-- Page Content --}}
+            <main class="flex-1 p-6 overflow-y-auto">
+                @yield('content')
+            </main>
+        </div>
+    </div>
 
-    @include('partials.footer')
-
+    @stack('scripts')
 </body>
 
 </html>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Shopping Bag -->
+  <path d="M8 24h48l-4 36H12z" fill="#3498DB"/>
+  <path d="M8 24h48v4H8z" fill="#2980B9"/>
+  <!-- Handles -->
+  <path d="M20 24c0-8 5-14 12-14s12 6 12 14" stroke="#2C3E50" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Items peeking out -->
+  <circle cx="24" cy="32" r="6" fill="#E74C3C"/>
+  <path d="M24 28l2-4" stroke="#27AE60" stroke-width="2" fill="none"/>
+  <ellipse cx="36" cy="36" rx="5" ry="7" fill="#F39C12"/>
+  <path d="M40 30c0-4 4-4 6 0" fill="#2ECC71"/>
+  <rect x="28" y="40" width="8" height="12" rx="1" fill="#9B59B6"/>
+  <!-- Star decoration -->
+  <path d="M44 44l2 4 4 0-3 3 1 4-4-2-4 2 1-4-3-3 4 0z" fill="#F1C40F"/>
+</svg>
