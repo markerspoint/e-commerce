@@ -8,18 +8,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#0d4d45', // Deep Teal/Green
+        primary: '#0d4d45', 
         'primary-hover': '#093b35',
-        secondary: '#fdc040', // Orange/Yellow accent if needed
+        secondary: '#fdc040',
         'secondary-hover': '#e0a800',
-        accent: '#c8eb77', // Lime Green
+        accent: '#c8eb77',
         'accent-hover': '#b4d668',
-        'soft-accent': '#e9f5d6', // Very light green
+        'soft-accent': '#e9f5d6',
         'shop-black': '#1e293b',
-        'shop-bg': '#f4f6f6', // Warm off-white background
+        'shop-bg': '#f4f6f6',
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
+      screens: {
+        'xs': '360px',
       },
       borderRadius: {
         'xl': '1rem',

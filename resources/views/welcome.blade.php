@@ -9,7 +9,7 @@
         <div class="bg-primary relative overflow-hidden flex items-center"
             style="border-radius: 2rem 2rem 50% 50% / 2rem 2rem 4rem 4rem;">
             <div
-                class="container mx-auto left-[7%] px-6 md:px-16 py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
+                class="container mx-auto left-0 md:left-[7%] px-6 md:px-16 py-8 md:py-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
                 <div class="text-white">
                     <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
                         We bring the store<br>to your door
@@ -18,7 +18,7 @@
                         Get organic produce and sustainably sourced groceries delivery at up to 4% off grocery.
                     </p>
                     <button
-                        class="inline-block bg-accent text-primary text-lg font-bold px-10 py-4 rounded-xl hover:bg-accent-hover transition shadow-xl shadow-accent/20 cursor-pointer transform hover:scale-105 duration-200">
+                        class="inline-block bg-accent text-primary text-lg font-bold px-6 py-3 md:px-10 md:py-4 rounded-xl hover:bg-accent-hover transition shadow-xl shadow-accent/20 cursor-pointer transform hover:scale-105 duration-200">
                         Shop now
                     </button>
                 </div>
@@ -37,14 +37,14 @@
     </div>
 
     <!-- Category Cards -->
-    <div class="container mx-auto px-4 mt-16 relative z-20">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+    <div class="container mx-auto px-4 mt-8 md:mt-16 relative z-20">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
             @forelse ($featuredCategories as $category)
                 <a href="{{ route('category.show', $category->slug) }}"
-                    class="bg-white p-5 rounded-3xl shadow-sm hover:shadow-md transition h-36 flex flex-col justify-between relative overflow-hidden group border border-gray-50 cursor-pointer"
+                    class="bg-white p-3 md:p-5 rounded-3xl shadow-sm hover:shadow-md transition h-32 md:h-36 flex flex-col justify-between relative overflow-hidden group border border-gray-50 cursor-pointer"
                     style="background-image: radial-gradient(circle at 0% 0%, {{ $category->card_color }}15 0%, transparent 50%);">
                     <div class="z-10">
-                        <h3 class="font-bold text-primary group-hover:text-primary-hover transition text-base">
+                        <h3 class="font-bold text-primary group-hover:text-primary-hover transition text-sm md:text-base">
                             {{ $category->name }}
                         </h3>
                         <p class="text-gray-400 text-xs mt-1">{{ $category->description ?? 'Fresh products' }}</p>
@@ -78,7 +78,7 @@
     </div>
 
     <!-- You Might Need (Products) -->
-    <div class="container mx-auto px-4 mt-20 mb-20">
+    <div class="container mx-auto px-4 mt-12 md:mt-20 mb-12 md:mb-20">
         <div class="flex items-center justify-between mb-8">
             <h2 class="text-3xl font-extrabold text-primary">You might need</h2>
             <a href="{{ route('products.index') }}"
@@ -92,10 +92,10 @@
         </div>
 
         @if ($dailyDiscoverProducts->count() > 0)
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-6">
                 @foreach ($dailyDiscoverProducts as $product)
                     <div
-                        class="bg-white rounded-3xl p-4 shadow-xl hover:shadow-md transition border border-transparent hover:border-gray-100 flex flex-col items-center text-center group h-full relative">
+                        class="bg-white rounded-3xl p-3 md:p-4 shadow-xl hover:shadow-md transition border border-transparent hover:border-gray-100 flex flex-col items-center text-center group h-full relative">
                         @if ($product->is_flash_sale)
                             <div
                                 class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-full rotate-12 shadow-md z-10 border-2 border-white">
@@ -106,7 +106,8 @@
                             <img src="{{ $product->image_url }}"
                                 class="w-full h-full object-contain group-hover:scale-110 transition duration-300">
                         </div>
-                        <h3 class="font-bold text-gray-800 text-base leading-tight mb-2 line-clamp-2 text-left w-full">
+                        <h3
+                            class="font-bold text-gray-800 text-sm md:text-base leading-tight mb-2 line-clamp-2 text-left w-full">
                             {{ $product->name }}
                         </h3>
                         {{-- Category pill and stock inline with outlined style --}}
@@ -140,11 +141,11 @@
                                 @auth
                                     <div class="flex gap-2 w-full">
                                         <button onclick="addToCart({{ $product->id }}, true)"
-                                            class="flex-1 bg-primary text-white text-sm font-bold py-2 rounded-xl hover:shadow-sm transition group-active:scale-95">
+                                            class="flex-1 bg-primary text-white text-xs md:text-sm font-bold py-2 rounded-xl hover:shadow-sm transition group-active:scale-95">
                                             Buy Now
                                         </button>
                                         <button onclick="addToCart({{ $product->id }})"
-                                            class="px-3 bg-shop-bg text-primary rounded-xl hover:bg-primary hover:text-white transition shadow-sm group-active:scale-95 flex items-center justify-center">
+                                            class="px-2 md:px-3 bg-shop-bg text-primary rounded-xl hover:bg-primary hover:text-white transition shadow-sm group-active:scale-95 flex items-center justify-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -159,11 +160,11 @@
                                 @else
                                     <div class="flex gap-2 w-full">
                                         <a href="{{ route('login') }}"
-                                            class="flex-1 bg-primary text-white text-sm font-bold py-2 rounded-xl hover:shadow-sm transition flex items-center justify-center">
+                                            class="flex-1 bg-primary text-white text-xs md:text-sm font-bold py-2 rounded-xl hover:shadow-sm transition flex items-center justify-center">
                                             Buy Now
                                         </a>
                                         <a href="{{ route('login') }}"
-                                            class="px-3 bg-shop-bg text-primary rounded-xl hover:bg-primary hover:text-white transition shadow-sm flex items-center justify-center">
+                                            class="px-2 md:px-3 bg-shop-bg text-primary rounded-xl hover:bg-primary hover:text-white transition shadow-sm flex items-center justify-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -199,8 +200,8 @@
     </div>
 
     {{-- banner --}}
-    <div class="container mx-auto px-4 mb-20">
-        <div class="relative overflow-hidden rounded-[3rem] shadow-2xl"
+    <div class="container mx-auto px-4 mb-12 md:mb-20">
+        <div class="relative overflow-hidden rounded-[4rem] md:rounded-[3rem] shadow-2xl"
             style="background: linear-gradient(135deg, #6B1B4E 0%, #8B2867 50%, #6B1B4E 100%);">
 
             <div class="absolute inset-0 opacity-10 pointer-events-none"
@@ -213,9 +214,9 @@
                 <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-accent/30 rounded-full blur-2xl"></div>
             </div>
 
-            <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-8 md:px-16 pt-12 md:pt-16 pb-0">
+            <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-6 md:px-16 pt-8 md:pt-16 pb-0">
                 <div class="text-white z-10 pb-12 md:pb-16">
-                    <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+                    <h2 class="text-2xl md:text-5xl font-extrabold leading-tight mb-6">
                         Stay Home and Get All Your Essentials From Our Market!
                     </h2>
                     <p class="text-gray-100 text-lg md:text-xl font-medium max-w-lg opacity-90">
@@ -233,7 +234,7 @@
         </div>
     </div>
 
-    <div class="relative pt-20 pb-0 overflow-hidden"
+    <div class="relative pt-12 md:pt-20 pb-0 overflow-hidden"
         style="background-color: #d1fa98; border-radius: 50% 50% 0 0 / 4rem 4rem 0 0;">
         <div class="absolute inset-0 pointer-events-none opacity-40">
             <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -263,7 +264,7 @@
         </div>
 
         <div class="container mx-auto px-4 text-center mb-16 relative z-10">
-            <h2 class="text-4xl md:text-6xl font-extrabold text-[#03352c] mb-6 tracking-tight">
+            <h2 class="text-3xl md:text-4xl lg:text-6xl font-extrabold text-[#03352c] mb-6 tracking-tight">
                 We always provide<br>you the best in town
             </h2>
             <p class="text-[#03352c] text-lg font-medium max-w-2xl mx-auto opacity-75">
