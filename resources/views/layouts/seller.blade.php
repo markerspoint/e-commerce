@@ -23,12 +23,9 @@
 
 <body class="antialiased bg-gray-50">
     <div class="min-h-screen flex">
-        {{-- Sidebar --}}
         @include('partials.seller-sidebar')
 
-        {{-- Main Content Area --}}
         <div class="flex-1 flex flex-col ml-64">
-            {{-- Top Header --}}
             @include('partials.seller-header')
 
             {{-- Page Content --}}

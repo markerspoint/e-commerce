@@ -98,6 +98,10 @@
                                 <a href="{{ route('seller.dashboard') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition">Seller
                                     Dashboard</a>
+                            @else
+                                <a href="{{ route('orders.index') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition">My
+                                    Orders</a>
                             @endif
                             <a href="#"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition">Profile</a>
