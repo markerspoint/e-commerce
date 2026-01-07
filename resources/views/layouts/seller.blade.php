@@ -29,7 +29,7 @@
             @include('partials.seller-header')
 
             {{-- Page Content --}}
-            <main class="flex-1 p-6 overflow-y-auto">
+            <main class="flex-1 p-6">
                 @yield('content')
             </main>
         </div>

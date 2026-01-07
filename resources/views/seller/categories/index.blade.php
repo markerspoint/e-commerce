@@ -134,8 +134,73 @@
                 </div>
 
                 {{-- Pagination --}}
-                <div class="px-6 py-4 border-t border-gray-100">
-                    {{ $categories->links('vendor.pagination.modern') }}
+                {{-- Pagination --}}
+                <div
+                    class="px-6 py-4 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p class="text-sm text-gray-500">
+                        Showing <span class="font-bold text-primary">{{ $categories->firstItem() ?? 0 }}</span> to <span
+                            class="font-bold text-primary">{{ $categories->lastItem() ?? 0 }}</span> of <span
+                            class="font-bold text-primary">{{ $categories->total() }}</span> results
+                    </p>
+
+                    @if ($categories->hasPages())
+                        <div class="flex items-center gap-2">
+                            {{-- Previous Page Link --}}
+                            @if ($categories->onFirstPage())
+                                <button disabled
+                                    class="p-2 rounded-lg border border-gray-100 text-gray-300 bg-gray-50 cursor-not-allowed">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                    </svg>
+                                </button>
+                            @else
+                                <a href="{{ $categories->previousPageUrl() }}"
+                                    class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:border-primary hover:text-primary hover:bg-green-50 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                    </svg>
+                                </a>
+                            @endif
+
+                            {{-- Page Links (Simple Window) --}}
+                            <div class="hidden sm:flex items-center gap-1">
+                                @foreach ($categories->getUrlRange(max(1, $categories->currentPage() - 2), min($categories->lastPage(), $categories->currentPage() + 2)) as $page => $url)
+                                    @if ($page == $categories->currentPage())
+                                        <span
+                                            class="px-3.5 py-2 rounded-lg bg-primary text-white text-sm font-semibold shadow-sm">{{ $page }}</span>
+                                    @else
+                                        <a href="{{ $url }}"
+                                            class="px-3.5 py-2 rounded-lg border border-gray-100 text-gray-600 hover:bg-green-50 hover:text-primary hover:border-primary/30 transition text-sm font-medium">{{ $page }}</a>
+                                    @endif
+                                @endforeach
+                            </div>
+
+                            {{-- Next Page Link --}}
+                            @if ($categories->hasMorePages())
+                                <a href="{{ $categories->nextPageUrl() }}"
+                                    class="p-2 rounded-lg border border-gray-200 text-gray-500 hover:border-primary hover:text-primary hover:bg-green-50 transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </a>
+                            @else
+                                <button disabled
+                                    class="p-2 rounded-lg border border-gray-100 text-gray-300 bg-gray-50 cursor-not-allowed">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </button>
+                            @endif
+                        </div>
+                    @endif
                 </div>
             @else
                 <div class="p-12 text-center">

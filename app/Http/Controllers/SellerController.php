@@ -17,17 +17,17 @@ class SellerController extends Controller
     {
         $stats = [
             'totalProducts' => Product::count(),
-            'totalStock' => Product::sum('stock'),
-            'totalSold' => Product::sum('sold_count'),
-            'lowStock' => Product::where('stock', '<', 10)->count(),
+            'totalOrders' => \App\Models\Order::count(),
+            'totalRevenue' => \App\Models\Order::where('status', 'completed')->sum('total_amount'),
+            'pendingOrders' => \App\Models\Order::where('status', 'pending')->count(),
         ];
 
-        $recentProducts = Product::with('category')
+        $recentOrders = \App\Models\Order::with('user')
             ->latest()
             ->take(5)
             ->get();
 
-        return view('seller.dashboard', compact('stats', 'recentProducts'));
+        return view('seller.dashboard', compact('stats', 'recentOrders'));
     }
 
     /**
@@ -49,6 +49,10 @@ class SellerController extends Controller
 
         $products = $query->latest()->paginate(10);
         $categories = Category::all();
+
+        if ($request->ajax()) {
+            return view('seller.products.table', compact('products', 'categories'));
+        }
 
         return view('seller.products.index', compact('products', 'categories'));
     }
@@ -257,5 +261,24 @@ class SellerController extends Controller
 
         return redirect()->route('seller.categories')
             ->with('success', 'Category deleted successfully!');
+    }
+    /**
+     * Show the seller orders list.
+     */
+    public function orders()
+    {
+        $orders = \App\Models\Order::latest()->paginate(10);
+        return view('seller.orders.index', compact('orders'));
+    }
+
+    /**
+     * Show individual order details.
+     */
+    public function showOrder(\App\Models\Order $order)
+    {
+        // Load relationships
+        $order->load(['user', 'orderItems.product']);
+        
+        return view('seller.orders.show', compact('order'));
     }
 }

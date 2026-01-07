@@ -74,6 +74,10 @@ Route::middleware(['auth', 'role:seller'])->prefix('seller')->name('seller.')->g
     Route::get('/categories/{category}/edit', [SellerController::class, 'editCategory'])->name('categories.edit');
     Route::put('/categories/{category}', [SellerController::class, 'updateCategory'])->name('categories.update');
     Route::delete('/categories/{category}', [SellerController::class, 'deleteCategory'])->name('categories.delete');
+
+    // Orders
+    Route::get('/orders', [SellerController::class, 'orders'])->name('orders');
+    Route::get('/orders/{order}', [SellerController::class, 'showOrder'])->name('orders.show');
 });
 
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show');

@@ -1,12 +1,9 @@
-{{-- Seller Dashboard Top Header --}}
 <header class="bg-white border-b border-gray-200 sticky top-0 z-40">
     <div class="px-6 py-4 flex items-center justify-between">
-        {{-- Left: Page Title / Breadcrumb --}}
         <div class="flex items-center gap-4">
             <h1 class="text-xl font-bold text-gray-800">@yield('page-title', 'Dashboard')</h1>
         </div>
 
-        {{-- Right: Actions --}}
         <div class="flex items-center gap-4">
             {{-- Search --}}
             <div class="hidden md:flex relative">
@@ -39,16 +36,6 @@
                         d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
                 <span>View Store</span>
-            </a>
-
-            {{-- Quick Add --}}
-            <a href="{{ route('seller.products.create') }}"
-                class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-primary/90 rounded-xl transition shadow-lg shadow-primary/25">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                    stroke="currentColor" class="w-4 h-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                </svg>
-                <span class="hidden sm:inline">Add Product</span>
             </a>
         </div>
     </div>
