@@ -44,9 +44,15 @@
                     <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
                         @foreach ($products as $product)
                             <div
-                                class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition border border-transparent hover:border-gray-100 flex flex-col items-center text-center group h-full">
+                                class="bg-white rounded-3xl p-4 shadow-sm hover:shadow-md transition border border-transparent hover:border-gray-100 flex flex-col items-center text-center group h-full relative">
+                                @if ($product->is_flash_sale)
+                                    <div
+                                        class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold px-3 py-1 rounded-full rotate-12 shadow-md z-10 border-2 border-white">
+                                        FLASH SALE
+                                    </div>
+                                @endif
                                 <div class="relative w-3/4 aspect-square mb-4">
-                                    <img src="{{ $product->image }}" alt="{{ $product->name }}"
+                                    <img src="{{ $product->image_url }}" alt="{{ $product->name }}"
                                         class="w-full h-full object-contain group-hover:scale-110 transition duration-300">
                                 </div>
                                 <h3 class="font-bold text-primary text-base leading-tight mb-1 line-clamp-2 h-10">

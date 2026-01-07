@@ -16,4 +16,16 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->image) {
+            if (\Illuminate\Support\Str::startsWith($this->image, ['http://', 'https://'])) {
+                return $this->image;
+            }
+            return \Illuminate\Support\Facades\Storage::url($this->image);
+        }
+        
+        return 'https://placehold.co/400x400';
+    }
 }
