@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,17 +40,14 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 
 // Protected routes - require authentication
 Route::middleware(['auth'])->group(function () {
-    Route::post('/cart/add', function() { 
-        return response()->json(['success' => true, 'message' => 'Product added to cart']); 
-    })->name('cart.add');
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::put('/cart/{item}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/{item}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
     
-    Route::get('/cart', function() { 
-        return view('cart.index'); 
-    })->name('cart.index');
-    
-    Route::get('/checkout', function() { 
-        return view('checkout.index'); 
-    })->name('checkout.index');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 });
 
 // Seller Routes - require seller role

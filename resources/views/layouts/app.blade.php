@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
@@ -25,6 +27,9 @@
 
     @include('partials.header')
 
+    <!-- Toast Notification -->
+    @include('partials.toast')
+
     <main class="@yield('main-class', 'min-h-screen')">
         @yield('content')
     </main>
@@ -33,6 +38,166 @@
         @include('partials.footer')
     @endunless
 
+    <div id="addToCartModal" class="fixed inset-0 z-[100] hidden" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity backdrop-blur-sm"
+            onclick="closeCartModal()"></div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                <div
+                    class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div
+                                class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 sm:mx-0 sm:h-10 sm:w-10">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-primary">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                                </svg>
+                            </div>
+                            <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
+                                <h3 class="text-xl font-bold leading-6 text-gray-900 mb-2" id="modal-title">Add to Cart
+                                </h3>
+                                <p class="text-sm text-gray-500 mb-6">How many items would you like to add?</p>
+
+                                <div class="flex items-center justify-center sm:justify-start gap-4 mb-2">
+                                    <button onclick="decrementModalQty()"
+                                        class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition text-gray-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
+                                        </svg>
+                                    </button>
+                                    <input type="number" id="modalQuantity" value="1" min="1"
+                                        class="w-20 text-center text-2xl font-bold border-none outline-none focus:ring-0 text-gray-800"
+                                        readonly>
+                                    <button onclick="incrementModalQty()"
+                                        class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition text-gray-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <button type="button" onclick="confirmAddToCart()"
+                            class="inline-flex w-full justify-center rounded-xl bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 sm:ml-3 sm:w-auto transition">Add
+                            to Cart</button>
+                        <button type="button" onclick="closeCartModal()"
+                            class="mt-3 inline-flex w-full justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto transition">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedProductId = null;
+        let isBuyNowAction = false;
+
+        function addToCart(productId, isBuyNow = false) {
+
+            selectedProductId = productId;
+            isBuyNowAction = isBuyNow;
+            document.getElementById('modalQuantity').value = 1;
+
+            // Update modal title/text based on action? Optional.
+            const title = document.getElementById('modal-title');
+            if (isBuyNowAction) {
+                title.innerText = "Buy Now";
+            } else {
+                title.innerText = "Add to Cart";
+            }
+
+            document.getElementById('addToCartModal').classList.remove('hidden');
+        }
+
+        function closeCartModal() {
+            document.getElementById('addToCartModal').classList.add('hidden');
+            selectedProductId = null;
+            isBuyNowAction = false;
+        }
+
+        function incrementModalQty() {
+            const input = document.getElementById('modalQuantity');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decrementModalQty() {
+            const input = document.getElementById('modalQuantity');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        function confirmAddToCart() {
+            if (!selectedProductId) return;
+
+            const quantity = parseInt(document.getElementById('modalQuantity').value);
+            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            fetch("{{ route('cart.add') }}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': token
+                    },
+                    body: JSON.stringify({
+                        product_id: selectedProductId,
+                        quantity: quantity
+                    })
+                })
+                .then(response => {
+                    if (response.status === 401) {
+                        window.location.href = "{{ route('login') }}";
+                        return;
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && data.success) {
+                        if (isBuyNowAction) {
+                            // Redirect to cart page
+                            window.location.href = "{{ route('cart.index') }}";
+                        } else {
+                            // Update header badge and close modal
+                            let badge = document.querySelector('.cart-count-badge');
+                            if (badge) {
+                                badge.innerText = data.cart_count;
+                                badge.classList.add('scale-125');
+                                setTimeout(() => badge.classList.remove('scale-125'), 200);
+                            } else {
+                                const cartIcon = document.querySelector('a[href="{{ route('cart.index') }}"]');
+                                if (cartIcon) {
+                                    badge = document.createElement('span');
+                                    badge.className =
+                                        'cart-count-badge absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold h-5 w-5 flex items-center justify-center rounded-full border-2 border-primary';
+                                    badge.innerText = data.cart_count;
+                                    cartIcon.appendChild(badge);
+                                }
+                            }
+
+                            closeCartModal();
+                            // Show success toast
+                            window.dispatchEvent(new CustomEvent('notify', {
+                                detail: {
+                                    message: 'Product added to cart',
+                                    type: 'success'
+                                }
+                            }));
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
     @stack('scripts')
 </body>
 

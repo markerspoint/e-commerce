@@ -18,7 +18,7 @@
 
             {{-- SIDEBAR (Fixed, doesn't scroll with content) --}}
             <aside
-                class="lg:w-64 shrink-0 overflow-y-auto no-scrollbar rounded-2xl shadow-sm border border-gray-100 bg-white mt-4">
+                class="lg:w-64 shrink-0 overflow-y-auto no-scrollbar rounded-2xl shadow-xl border border-gray-100 bg-white mt-4">
                 <div class="p-6">
                     <h3 class="font-bold text-lg text-primary mb-4">Categories</h3>
                     <ul class="space-y-2">
