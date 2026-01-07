@@ -14,7 +14,7 @@ class CategoryController extends Controller
         return view('category.index', compact('categories'));
     }
 
-    public function show($slug)
+    public function show(Request $request, $slug)
     {
         $category = Category::where('slug', $slug)->with('products')->firstOrFail();
         
@@ -27,10 +27,28 @@ class CategoryController extends Controller
             ]);
         }
 
+        if ($request->ajax()) {
+            return response()->json([
+                'header' => view('category.partials.header', [
+                    'category' => $category, 
+                    'categoryName' => $category->name
+                ])->render(),
+                'grid' => view('category.partials.grid', [
+                    'products' => $category->products
+                ])->render(),
+                'title' => $category->name . ' - ShopLink',
+                'slug' => $category->slug
+            ]);
+        }
+
+        // Fetch all categories for navigation
+        $categories = Category::all();
+
         return view('category.show', [
             'category' => $category,
             'categoryName' => $category->name,
-            'products' => $category->products
+            'products' => $category->products,
+            'categories' => $categories // Pass all categories
         ]);
     }
 
