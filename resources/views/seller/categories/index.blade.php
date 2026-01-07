@@ -135,7 +135,7 @@
 
                 {{-- Pagination --}}
                 <div class="px-6 py-4 border-t border-gray-100">
-                    {{ $categories->links() }}
+                    {{ $categories->links('vendor.pagination.modern') }}
                 </div>
             @else
                 <div class="p-12 text-center">
