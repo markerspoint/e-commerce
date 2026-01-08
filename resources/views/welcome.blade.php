@@ -17,21 +17,19 @@
                     <p class="text-gray-200 text-lg mb-8 max-w-md font-medium">
                         Get organic produce and sustainably sourced groceries delivery at up to 4% off grocery.
                     </p>
-                    <button
+                    <a href="#youProducts"
                         class="inline-block bg-accent text-primary text-lg font-bold px-6 py-3 md:px-10 md:py-4 rounded-xl hover:bg-accent-hover transition shadow-xl shadow-accent/20 cursor-pointer transform hover:scale-105 duration-200">
                         Shop now
-                    </button>
+                    </a>
                 </div>
                 <div class="relative flex justify-center md:justify-end mt-10 md:mt-0">
                 </div>
             </div>
 
-            <!-- Hero Image (Grocery Bag) - Positioned Absolutely on Desktop -->
             <div class="hidden md:block absolute bottom-0 top-[10%] right-[10%] w-[35%] h-[115%] pointer-events-none z-0">
                 <img src="{{ asset('hero_grocery_bag.png') }}" alt="Grocery Delivery"
                     class="w-full h-full object-contain object-bottom drop-shadow-2xl">
             </div>
-            <!-- Decorative Elements -->
             <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-3xl z-0"></div>
         </div>
     </div>
@@ -61,8 +59,6 @@
                     <p>No categories available yet.</p>
                 </div>
             @endforelse
-
-            <!-- See All Card -->
             <a href="{{ route('categories.index') }}"
                 class="bg-accent p-5 rounded-3xl shadow-sm hover:shadow-md transition h-36 flex flex-col items-center justify-center gap-3 cursor-pointer group">
                 <div
@@ -77,8 +73,7 @@
         </div>
     </div>
 
-    <!-- You Might Need (Products) -->
-    <div class="container mx-auto px-4 mt-12 md:mt-20 mb-12 md:mb-20">
+    <div id="youProducts" class="container mx-auto px-4 mt-12 md:mt-20 mb-12 md:mb-20">
         <div class="flex items-center justify-between mb-8">
             <h2 class="text-3xl font-extrabold text-primary">You might need</h2>
             <a href="{{ route('products.index') }}"
@@ -159,11 +154,11 @@
                                     </div>
                                 @else
                                     <div class="flex gap-2 w-full">
-                                        <a href="{{ route('login') }}"
-                                            class="flex-1 bg-primary text-white text-xs md:text-sm font-bold py-2 rounded-xl hover:shadow-sm transition flex items-center justify-center">
+                                        <button onclick="showGuestLoginModal()"
+                                            class="flex-1 bg-primary text-white text-xs md:text-sm font-bold py-2 rounded-xl hover:shadow-sm transition">
                                             Buy Now
-                                        </a>
-                                        <a href="{{ route('login') }}"
+                                        </button>
+                                        <button onclick="showGuestLoginModal()"
                                             class="px-2 md:px-3 bg-shop-bg text-primary rounded-xl hover:bg-primary hover:text-white transition shadow-sm flex items-center justify-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -174,7 +169,7 @@
                                                 <path
                                                     d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
                                             </svg>
-                                        </a>
+                                        </button>
                                     </div>
                                 @endauth
                             @endif

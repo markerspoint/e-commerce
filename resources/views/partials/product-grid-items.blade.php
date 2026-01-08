@@ -56,11 +56,11 @@
                         </div>
                     @else
                         <div class="flex gap-2 w-full">
-                            <a href="{{ route('login') }}"
-                                class="flex-1 bg-primary text-white text-sm font-bold py-2 rounded-xl hover:shadow-sm transition flex items-center justify-center">
+                            <button onclick="showGuestLoginModal()"
+                                class="flex-1 bg-primary text-white text-sm font-bold py-2 rounded-xl hover:shadow-sm transition">
                                 Buy Now
-                            </a>
-                            <a href="{{ route('login') }}"
+                            </button>
+                            <button onclick="showGuestLoginModal()"
                                 class="px-3 bg-shop-bg text-primary rounded-xl hover:bg-primary hover:text-white transition shadow-sm flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -70,7 +70,7 @@
                                     <path
                                         d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
                                 </svg>
-                            </a>
+                            </button>
                         </div>
                     @endauth
                 @endif
